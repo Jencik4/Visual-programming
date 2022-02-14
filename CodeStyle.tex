@@ -1,0 +1,287 @@
+\documentclass{article}
+
+\usepackage[russian]{babel}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{authblk}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[T1]{fontenc}
+
+\title{Code Style}
+\author{Кулебакин Е.Д., ИА-031}
+\affil{email: geka\_kule@mail.ru,  github: @Jencik4}
+\date{Февраль 2022}
+
+\begin{document}
+
+\maketitle
+
+\section{Введение}
+Стиль кода (code style) — это набор правил для написания проекта. Единый стиль упрощает чтение, редактирование и написание кода.
+
+\section{C++\cite{CPP}}
+\subsection{Отступы\cite{one}}
+
+Каждая новая инициализация размещается на новой строке.\\
+
+\newcommand*{\Tabulate}{\hspace*{0.5cm}}
+\begin{lstlisting}
+\begin{tabular}{ | l | }
+\hline
+\\
+int x = 3;\\
+int y = 7;\\
+double z = 4.25;\\
+\\
+\hline
+\end{tabular}
+\end{lstlisting}
+\\\\
+Размещается пустая строка между функциями и между группами утверждений.\\
+Перед каждой открывающей скобкой '\{' ставьтся пробел, а после - перенос строки.
+Также отступ увеличивается на один шаг после каждой открывающей скобки '\{', и уменьшается его на один шаг перед каждой закрывающей скобке '\}'. \\
+Для отступов используется табуляция. Размер таба равен 4 пробелам.\\
+
+\begin{lstlisting}
+\begin{tabular}{ | l | }
+\hline
+\\
+void first() \{\\
+\Tabulate return 0;\\
+\}\\
+\\
+void second() \{\\
+\Tabulate return 0;\\
+
+\}\\
+\\
+\hline
+\end{tabular}
+\end{lstlisting}
+
+\subsection{Названия переменных, функций, структур и классов}
+Функции и переменные имеют описательные имена, отражающие их содержание или назначение. Избегается однобуквенные названия, за исключением итераторов.\\
+Имена функций и пересенных записываются, используя верблюжийРегистр. Название классов и структур - ПаскальныйРегистр, а констант — ВЕРХНИЙ\_РЕГИСТР.\\\\
+\begin{lstlisting}
+\begin{tabular}{ | l | }
+\hline
+\\
+int maxNumber(...);\\\\
+int maxNunber;\\\\
+#define MAX\_NUMBER 100;\\\\
+typedef struct MaxNumber \{\\
+    \Tabulate ...\\
+\} Node;
+\\\\
+\hline
+\end{tabular}
+\end{lstlisting}
+
+
+\subsection{Ввод и вывод данных}
+\begin{lstlisting}
+\begin{tabular}{ | l | }
+\hline
+\\
+std::cout \ll "Please, enter your number: ";\\
+std::cin \gg a;\\
+std::cout \ll "Your number " \ll a \ll std::endl;\\
+\\
+\hline
+\end{tabular}
+\end{lstlisting}
+\newpage
+
+\subsection{Циклы\cite{two}}\\
+Используется один пробел между ключевым словом и открывающей скобкой:\\
+До и после операторов сравнения используется отступ в один пробел:\\\\
+
+\large \textbf{for}\\\\
+\normalsize
+\begin{lstlisting}
+\begin{tabular}{ | l | }
+
+\hline
+\\
+for (int i = 0; i < 10; i++) \{\\
+         \Tabulate for (int j = 0; j < 5; j++) \{\\
+               \Tabulate\Tabulate...; \\
+           \Tabulate \} \\
+\}
+\\\\
+\hline
+
+\end{tabular}
+\\\\
+\end{lstlisting}
+\\\large \textbf{while}\\\\
+\normalsize
+\begin{left}
+\begin{lstlisting}
+\begin{tabular}{ | l | }
+
+\hline
+\\
+while (i < 10) \{\\
+               \Tabulate...; \\
+\}
+\\\\
+\hline
+
+\end{tabular}
+\\\\
+\end{lstlisting}\\
+\end{left}\\\\
+\\\large \textbf{do while}\\\\
+\begin{left}
+\begin{lstlisting}
+\begin{tabular}{ | l | }
+
+\hline
+\\
+do \{\\
+               \Tabulate...; \\
+        \} while (i < 10);
+\\\\
+\hline
+
+\end{tabular}
+\\\\
+\end{lstlisting}
+\end{left}\
+
+
+
+\newpage
+
+
+\subsection{if else}
+Каждый if и else пишется на отдельной строчки(кроме случая else if, тогда они пишутся через пробел). Фигурные скобки ставятся только в случае, если при попадании в условие выполняется более одного действия, иначе оно пишется на новой строке через отступ.\\
+Используется один пробел между ключевым словом и открывающей скобкой:\\
+До и после операторов сравнения используется отступ в один пробел:\\\\
+\begin{lstlisting}
+\begin{tabular}{ | l | }
+
+\hline
+\\
+if (a >= b) \{\\
+\Tabulate std::cout \ll a ;\\
+\Tabulate return a;\\
+\}\\
+else if (b >= c) \\
+\Tabulate return b;\\
+else\\
+\Tabulate return c;\\
+\\
+\hline
+
+\end{tabular}
+\\\\
+\end{lstlisting}
+
+\subsection{Функции}
+В порядке написании функций стоит придерживаться последовательности применения, чтобы не было ошибок.\\\\
+Между функциями обязательно оставляется пустая строка для более удобного листинга программы.\\\\
+Закрывающая скобка всегда ставится в соответствии с уровнем начала функции, к которой она принадлежит\\\\
+\begin{lstlisting}
+\begin{tabular}{ | l | }
+
+\hline
+\\
+void createStudent(int age, ...) \{\\
+    \Tabulate ...\\
+\}\\\\
+
+void printStudent(void *student) \{\\
+    \Tabulate ...\\
+\}\\\\
+
+int main() \{\\
+	\Tabulate ...\\
+	\\
+	\Tabulate createStudent(age, ...);\\
+	\Tabulate ...\\
+	\\
+	\Tabulate printStudent(student);\\
+
+\}\\
+\\
+\hline
+
+\end{tabular}
+\\\\
+\end{lstlisting}
+
+
+\subsection{Структуры}
+\begin{lstlisting}
+\begin{tabular}{ | l | }
+
+\hline
+\\typedef struct Node \{\\
+    \Tabulate string *line;\\
+    \Tabulate int height;\\
+    \Tabulate struct Node *left;\\
+    \Tabulate struct Node *right;\\
+\} Node;
+\\\\
+\hline
+
+\end{tabular}
+\\\\
+\end{lstlisting}
+
+\subsection{Классы}
+
+\begin{lstlisting}
+\begin{tabular}{ | l |}
+
+\hline
+\\
+
+class Point \{\\
+private:\\
+   \Tabulate int x;\\
+   \Tabulate int y;\\
+public:\\
+  \Tabulate  Point() \{\\
+    \Tabulate\Tabulate    this->x = 0;\\
+    \Tabulate\Tabulate    this->y = 0;\\
+   \Tabulate \}\\
+ \Tabulate   Point(int x, int y) \{\\
+    \Tabulate\Tabulate    this->x = x;\\
+    \Tabulate\Tabulate    this->y = y;\\
+   \Tabulate \}\\
+    \Tabulate  void setX(int x) \{\\
+    \Tabulate\Tabulate    this->x = x;\\
+   \Tabulate \}\\
+   \Tabulate  void setY(int y) \{\\
+    \Tabulate\Tabulate    this->y = y;\\
+   \Tabulate \}\\
+   \Tabulate  int getX() \{\\
+    \Tabulate\Tabulate    return this->x;\\
+   \Tabulate \}\\
+   \Tabulate  int getY() \{\\
+    \Tabulate\Tabulate    return this->y;\\
+   \Tabulate \}\\
+\};\\
+\hline
+
+\end{tabular}
+\\\\
+\newpage
+
+\end{lstlisting}
+\begin{thebibliography}{1}
+\bibitem{CPP}
+ISO/IEC 14882 Programming languages — C++.
+\bibitem{one}CS 106B: Programming Abstractions (C++)
+Summer 2015 \\ [http://stanford.edu/class/archive/cs/cs106b/cs106b.1158/styleguide.shtml]
+\bibitem{two}Циклы. Операторы цикла. \\
+[https://www.bestprog.net/ru/2017/09/04/cycles-operators-of-the-cycle-for-while-do-while\_ru/]
+\bibitem{three}Объявления Typedef.\\
+[https://docs.microsoft.com/ru-ru/cpp/c-language/typedef-declarations?view=msvc-16]
+\end{thebibliography}
+\bibliography{sample}
+
+\end{document}
